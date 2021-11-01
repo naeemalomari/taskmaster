@@ -3,11 +3,15 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +44,85 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+        Log.i(TAG, "onCreate:movingToAllTasks ");
+        Button button5 =findViewById(R.id.button5);
+        button5.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view ){
+                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
+                String task1 = button5.getText().toString();
+                intent2.putExtra("title", task1);
+                startActivity(intent2);
+            }
+        });
+
+        Log.i(TAG, "onCreate:movingToAllTasks ");
+        Button button6 =findViewById(R.id.button6);
+        button6.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view ){
+                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
+                String task1 = button6.getText().toString();
+                intent2.putExtra("title", task1);
+                startActivity(intent2);
+            }
+        });
+        Log.i(TAG, "onCreate:movingToAllTasks ");
+
+
+
+        Button button7 =findViewById(R.id.button7);
+        button7.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view ){
+                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
+                String task1 = button7.getText().toString();
+                intent2.putExtra("title", task1);
+                startActivity(intent2);
+            }
+
+        });
+
+        Log.i(TAG, "onCreate:movingToAllTasks ");
+        Button saving =findViewById(R.id.usernameBtn);
+        saving.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view ){
+                Intent intent2 = new Intent(MainActivity.this,SettingPage.class);
+                startActivity(intent2);
+            }
+        });
+
+    }
+
+//    public void getTask1(View view) {
+//        Intent taskDetail = new Intent(this,TaskDetailPage.class);
+//        taskDetail.putExtra("title", "Task1");
+//        startActivity(taskDetail);
+//    }
+//
+//    public void getTask2(View view) {
+//        Intent taskDetail = new Intent(this,TaskDetailPage.class);
+//        taskDetail.putExtra("title", "Task2");
+//        startActivity(taskDetail);
+//    }
+//
+//    public void getTask3(View view) {
+//        Intent taskDetail = new Intent(this,TaskDetailPage.class);
+//        taskDetail.putExtra("title", "Task3");
+//        startActivity(taskDetail);
+//    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String saveButton1 = sharedPreferences.getString("username", "here is your name : ");
+
+        TextView username = findViewById(R.id.textView7);
+        username.setText("UserName " + saveButton1);
 
     }
 }
