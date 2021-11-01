@@ -1,12 +1,18 @@
-## Create a HomePage and buttons to go from page to page.
-## ![image description](Screenshot_20211031_191434_com.example.taskmaster.jpg)
+## Adding three buttons in the home page to reach to each task for the user 
+## ![image description](Screenshot_20211101_160522_com.example.taskmaster.jpg)
 
 
 
-## Adding the user task and user description and increment the total tasks by 1 in each task.
-## ![image description](Screenshot_20211031_191437_com.example.taskmaster.jpg)
+## You will pass in the button to the task each task page will have it task
+## ![image description](Screenshot_20211101_160525_com.example.taskmaster.jpg)
+## ![image description](Screenshot_20211101_160529_com.example.taskmaster.jpg)
+## ![image description](Screenshot_20211101_160532_com.example.taskmaster.jpg)
 
 
 
-## Viewing all the tasks pages.
-## ![image description](Screenshot_20211031_191442_com.example.taskmaster.jpg)
+## Adding the settings page in the application
+
+## ![image description](Screenshot_20211101_160536_com.example.taskmaster.jpg)
+## ![image description](Screenshot_20211101_160559_com.example.taskmaster.jpg)
+
+## ![image description](homepageafteraddingname.jpg)

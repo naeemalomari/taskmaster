@@ -10,10 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Taskmaster">
         <activity
+            android:name=".SettingPage"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".TaskDetailPage"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".MainActivity3"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".MainActivity2"
             android:exported="false"
@@ -21,7 +28,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
