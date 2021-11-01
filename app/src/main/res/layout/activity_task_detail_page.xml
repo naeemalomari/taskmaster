@@ -11,7 +11,7 @@
         android:layout_width="362dp"
         android:layout_height="41dp"
         android:text="Title "
-        android:textColor="#009688"
+        android:textColor="#E91E63"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
