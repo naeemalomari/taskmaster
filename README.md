@@ -11,7 +11,8 @@
 
 
 ## Adding the settings page in the application
+## ![image description](homepageafteraddingname.jpg)
 ## ![image description](Screenshot_20211101_160536_com.example.taskmaster.jpg)
 ## ![image description](Screenshot_20211101_160559_com.example.taskmaster.jpg)
-## ![image description](homepageafteraddingname.jpg)
+
 
