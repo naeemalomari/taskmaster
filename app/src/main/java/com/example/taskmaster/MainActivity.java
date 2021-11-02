@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Tasks> tasksData=new ArrayList<Tasks>();
+        ArrayList<Tasks> tasksData = new ArrayList<Tasks>();
         tasksData.add(new Tasks("LinkedList", "Don't lose your reference", "in progress"));
         tasksData.add(new Tasks("Stack", " Don't lose your reference ", "assigned"));
         tasksData.add(new Tasks("Queue", " Don't lose your reference ", "complete"));
@@ -38,7 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
         allTaskDataRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        allTaskDataRecyclerView.setAdapter(new TaskAdapter(tasksData));
+        allTaskDataRecyclerView.setAdapter(new TaskAdapter(tasksData,  new TaskAdapter.OnTaskItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Intent intentTaskDetails = new Intent(getApplicationContext(), TaskDetailPage.class);
+                intentTaskDetails.putExtra("title", tasksData.get(position).title);
+                intentTaskDetails.putExtra("body", tasksData.get(position).body);
+                intentTaskDetails.putExtra("state", tasksData.get(position).state);
+                startActivity(intentTaskDetails);
+
+            }
+        }));
 
 
         Log.i(TAG, "onCreate: movingToAddTasks");

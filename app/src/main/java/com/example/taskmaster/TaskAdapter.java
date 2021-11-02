@@ -1,79 +1,74 @@
 package com.example.taskmaster;
 
-import android.content.Intent;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    List<Tasks> allTaskData = new ArrayList<>();
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
+
+    private final List<Tasks> taskItems;
     private OnTaskItemClickListener listener;
 
-    public TaskAdapter(List<Tasks> allTaskData) {
-        this.allTaskData = allTaskData;
-        this.listener= listener;
+
+    public TaskAdapter(List<Tasks> taskMasterItem, OnTaskItemClickListener listener) {
+        this.taskItems = taskMasterItem;
+        this.listener = listener;
     }
+
+
     public interface OnTaskItemClickListener {
         void onItemClicked(int position);
     }
+
     @NonNull
     @Override
-    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_tasks, parent,false);
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_tasks, parent, false);
-
-        return new TaskViewHolder(view, listener);
+        return new ViewHolder(view, listener);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-
-        holder.tasks = allTaskData.get(position);
-        TextView title = holder.itemView.findViewById(R.id.title28);
-        TextView body = holder.itemView.findViewById(R.id.body);
-        TextView state = holder.itemView.findViewById(R.id.state);
-
-        title.setText(holder.tasks.title);
-        body.setText(holder.tasks.body);
-        state.setText(holder.tasks.state);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Tasks item = taskItems.get(position);
+        holder.title.setText(item.title);
+        holder.body.setText(item.body);
+        holder.state.setText(item.state);
 
     }
 
     @Override
     public int getItemCount() {
+        return taskItems.size();
 
-        return allTaskData.size();
     }
 
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
-    public static class TaskViewHolder extends RecyclerView.ViewHolder {
-
-        public Tasks tasks;
-
-        View itemView;
-
-        public TaskViewHolder(@NonNull View itemView, OnTaskItemClickListener listener) {
+        private TextView title;
+        private TextView body;
+        private TextView state ;
+        ViewHolder(@NonNull View itemView, OnTaskItemClickListener listener){
             super(itemView);
-            this.itemView = itemView;
 
+            title = itemView.findViewById(R.id.title28);
+            body = itemView.findViewById(R.id.body);
+            state = itemView.findViewById(R.id.state);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("my", "Element  " + getAdapterPosition() + "   NUMBER OF INDEX");
+                    listener.onItemClicked(getAdapterPosition());
+
                 }
             });
         }
-    }
 
+    }
 }
