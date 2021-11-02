@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         allTaskDataRecyclerView.setAdapter(new TaskAdapter(tasksData));
 
+
         Log.i(TAG, "onCreate: movingToAddTasks");
         Button button1 = findViewById(R.id.button);
         button1.setOnClickListener(new View.OnClickListener(){
