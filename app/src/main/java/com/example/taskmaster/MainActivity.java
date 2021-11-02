@@ -1,6 +1,8 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,15 +14,41 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "tag";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayList<Tasks> tasksData = new ArrayList<Tasks>();
+        tasksData.add(new Tasks("LinkedList", "Don't lose your reference", "in progress"));
+        tasksData.add(new Tasks("Stack", " Don't lose your reference ", "assigned"));
+        tasksData.add(new Tasks("Queue", " Don't lose your reference ", "complete"));
+        tasksData.add(new Tasks("Tree", " specify the tree root ", "new"));
+        tasksData.add(new Tasks("Mock", " be prepared for any attack", "HARD"));
+
+        RecyclerView allTaskDataRecyclerView= findViewById(R.id.recylerViewId);
+
+        allTaskDataRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        allTaskDataRecyclerView.setAdapter(new TaskAdapter(tasksData,  new TaskAdapter.OnTaskItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Intent intentTaskDetails = new Intent(getApplicationContext(), TaskDetailPage.class);
+                intentTaskDetails.putExtra("title", tasksData.get(position).title);
+                intentTaskDetails.putExtra("body", tasksData.get(position).body);
+                intentTaskDetails.putExtra("state", tasksData.get(position).state);
+                startActivity(intentTaskDetails);
+
+            }
+        }));
 
 
         Log.i(TAG, "onCreate: movingToAddTasks");
@@ -46,44 +74,44 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Log.i(TAG, "onCreate:movingToAllTasks ");
-        Button button5 =findViewById(R.id.button5);
-        button5.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view ){
-                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
-                String task1 = button5.getText().toString();
-                intent2.putExtra("title", task1);
-                startActivity(intent2);
-            }
-        });
-
-        Log.i(TAG, "onCreate:movingToAllTasks ");
-        Button button6 =findViewById(R.id.button6);
-        button6.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view ){
-                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
-                String task1 = button6.getText().toString();
-                intent2.putExtra("title", task1);
-                startActivity(intent2);
-            }
-        });
-        Log.i(TAG, "onCreate:movingToAllTasks ");
-
-
-
-        Button button7 =findViewById(R.id.button7);
-        button7.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view ){
-                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
-                String task1 = button7.getText().toString();
-                intent2.putExtra("title", task1);
-                startActivity(intent2);
-            }
-
-        });
+//        Log.i(TAG, "onCreate:movingToAllTasks ");
+//        Button button5 =findViewById(R.id.button5);
+//        button5.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view ){
+//                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
+//                String task1 = button5.getText().toString();
+//                intent2.putExtra("title", task1);
+//                startActivity(intent2);
+//            }
+//        });
+//
+//        Log.i(TAG, "onCreate:movingToAllTasks ");
+//        Button button6 =findViewById(R.id.button6);
+//        button6.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view ){
+//                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
+//                String task1 = button6.getText().toString();
+//                intent2.putExtra("title", task1);
+//                startActivity(intent2);
+//            }
+//        });
+//        Log.i(TAG, "onCreate:movingToAllTasks ");
+//
+//
+//
+//        Button button7 =findViewById(R.id.button7);
+//        button7.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view ){
+//                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
+//                String task1 = button7.getText().toString();
+//                intent2.putExtra("title", task1);
+//                startActivity(intent2);
+//            }
+//
+//        });
 
         Log.i(TAG, "onCreate:movingToAllTasks ");
         Button saving =findViewById(R.id.usernameBtn);
