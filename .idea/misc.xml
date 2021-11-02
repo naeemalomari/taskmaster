@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/drawable/ic_baseline_accessible_forward_24.xml" value="0.22552083333333334" />
-        <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_main2.xml" value="0.33" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_main3.xml" value="0.25" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_setting_page.xml" value="0.5" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_task_detail_page.xml" value="0.25" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_tasks.xml" value="0.1" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/fragment_tasks.xml" value="0.33866891322662174" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/main_activity.xml" value="0.209375" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/main_fragment.xml" value="0.22" />
       </map>
