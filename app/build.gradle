@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.application'
+
+
 }
 
 android {
@@ -45,4 +47,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+
 }
