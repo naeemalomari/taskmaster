@@ -36,12 +36,12 @@ public class AddTask extends AppCompatActivity {
                 System.out.println("*********************" + addedTaskID + "**********************************************");
                 Button addTaskButton=findViewById(R.id.addTask);
 
-                addTaskButton.setOnClickListener((view1 -> {
-                    Intent intent = new Intent(AddTask.this, MainActivity.class);
-                    startActivity(intent);
-
-
-                }));
+//                addTaskButton.setOnClickListener((view1 -> {
+//                    Intent intent = new Intent(AddTask.this, MainActivity.class);
+//                    startActivity(intent);
+//
+//
+//                }));
             }
         });
 
