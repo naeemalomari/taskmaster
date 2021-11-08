@@ -41,7 +41,7 @@ public class AddTask extends AppCompatActivity {
 //                System.out.println("*********************" + addedTaskID + "**********************************************");
                 Button addTaskButton = findViewById(R.id.addTask);
 
-                addTaskButton.setOnClickListener((view1 -> {
+//                addTaskButton.setOnClickListener((view1 -> {
 
 
                     Tasks tasksOrg = Tasks.builder()
@@ -60,7 +60,7 @@ public class AddTask extends AppCompatActivity {
                     startActivity(intent);
 
 
-                }));
+//                }));
             }
         });
 

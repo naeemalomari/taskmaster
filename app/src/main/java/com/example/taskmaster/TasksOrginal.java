@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 //@RequiredArgsConstructor
-public class TasksOrg {
+public class TasksOrginal {
 
     @PrimaryKey(autoGenerate = true)
     public Long id;
@@ -29,7 +29,7 @@ public class TasksOrg {
     public String state;
 
 
-    public TasksOrg(String title, String body, String state) {
+    public TasksOrginal(String title, String body, String state) {
         this.title = title;
         this.body = body;
         this.state = state;

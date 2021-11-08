@@ -9,18 +9,18 @@ import java.util.List;
 
 @Dao
 public interface TaskDao {
-    @Query("SELECT * FROM TasksOrg")
-     List<TasksOrg> getAll() ;
+    @Query("SELECT * FROM TasksOrginal")
+     List<TasksOrginal> getAll() ;
 
-    @Query("SELECT * FROM TasksOrg WHERE id=:id")
-    TasksOrg getTasksById(Long id);
+    @Query("SELECT * FROM TasksOrginal WHERE id=:id")
+    TasksOrginal getTasksById(Long id);
     @Insert
-    Long insertTasks(TasksOrg tasksOrg);
+    Long insertTasks(TasksOrginal tasksOrginal);
 
      @Update
-     void updateTasks(TasksOrg tasksOrg);
+     void updateTasks(TasksOrginal tasksOrginal);
 
     @Delete
-    void deleteTasks(TasksOrg tasksOrg);
+    void deleteTasks(TasksOrginal tasksOrginal);
 
 }

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 //        List<Tasks> tasksData = TasksDatabase.getInstance(this).taskDao().getAll();
-        List<TasksOrg> tasksData = new ArrayList<>();
+        List<TasksOrginal> tasksData = new ArrayList<>();
 
         RecyclerView allTaskDataRecyclerView = findViewById(R.id.recylerViewId);
 
@@ -77,19 +75,18 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
         Amplify.API.query(
-                ModelQuery.list(com.amplifyframework.datastore.generated.model.Tasks.class),
+                ModelQuery.list(Tasks.class),
                 response -> {
                     for (Tasks todo : response.getData()) {
-                        TasksOrg tasksOrg = new TasksOrg(todo.getTitle(), todo.getBody(), todo.getState());
-                        Log.i("graph testing", todo.getTitle());
-                        tasksData.add(tasksOrg);
+                        TasksOrginal taskOrg = new TasksOrginal(todo.getTitle(),todo.getBody(),todo.getState());
+                        tasksData.add(taskOrg);
                     }
                     handler.sendEmptyMessage(1);
                 },
                 error -> Log.e("MyAmplifyApp", "Query failure", error)
         );
+
 
         Button addTaskButton = findViewById(R.id.addTask);
         addTaskButton.setOnClickListener((view -> {
