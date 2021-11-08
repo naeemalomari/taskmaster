@@ -5,23 +5,22 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao
 public interface TaskDao {
-    @Query("SELECT * FROM tasks")
-     List<Tasks> getAll() ;
+    @Query("SELECT * FROM TasksOrginal")
+     List<TasksOrginal> getAll() ;
 
-    @Query("SELECT * FROM tasks WHERE id=:id")
-    Tasks getTasksById(Long id);
+    @Query("SELECT * FROM TasksOrginal WHERE id=:id")
+    TasksOrginal getTasksById(Long id);
     @Insert
-    Long insertTasks(Tasks tasks);
+    Long insertTasks(TasksOrginal tasksOrginal);
 
      @Update
-     void updateTasks(Tasks tasks);
+     void updateTasks(TasksOrginal tasksOrginal);
 
     @Delete
-    void deleteTasks(Tasks tasks);
+    void deleteTasks(TasksOrginal tasksOrginal);
 
 }
