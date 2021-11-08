@@ -26,8 +26,8 @@ public final class Tasks implements Model {
   public static final QueryField STATE = field("Tasks", "state");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
-  private final @ModelField(targetType="String", isRequired = true) String body;
-  private final @ModelField(targetType="String", isRequired = true) String state;
+  private final @ModelField(targetType="String") String body;
+  private final @ModelField(targetType="String") String state;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -133,27 +133,19 @@ public final class Tasks implements Model {
       state);
   }
   public interface TitleStep {
-    BodyStep title(String title);
-  }
-  
-
-  public interface BodyStep {
-    StateStep body(String body);
-  }
-  
-
-  public interface StateStep {
-    BuildStep state(String state);
+    BuildStep title(String title);
   }
   
 
   public interface BuildStep {
     Tasks build();
     BuildStep id(String id);
+    BuildStep body(String body);
+    BuildStep state(String state);
   }
   
 
-  public static class Builder implements TitleStep, BodyStep, StateStep, BuildStep {
+  public static class Builder implements TitleStep, BuildStep {
     private String id;
     private String title;
     private String body;
@@ -170,22 +162,20 @@ public final class Tasks implements Model {
     }
     
     @Override
-     public BodyStep title(String title) {
+     public BuildStep title(String title) {
         Objects.requireNonNull(title);
         this.title = title;
         return this;
     }
     
     @Override
-     public StateStep body(String body) {
-        Objects.requireNonNull(body);
+     public BuildStep body(String body) {
         this.body = body;
         return this;
     }
     
     @Override
      public BuildStep state(String state) {
-        Objects.requireNonNull(state);
         this.state = state;
         return this;
     }

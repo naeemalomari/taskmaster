@@ -1,5 +1,6 @@
 package com.example.taskmaster;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,9 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -15,9 +19,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import com.amplifyframework.datastore.generated.model.Tasks;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,16 +41,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try {
+            Amplify.addPlugin(new AWSDataStorePlugin()); // stores records locally
+            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
+            Amplify.configure(getApplicationContext());
 
+            Log.i(TAG, "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e(TAG, "Could not initialize Amplify", error);
+        }
 
-        List<Tasks> tasksData = TasksDatabase.getInstance(this).taskDao().getAll();
-//
-//        ArrayList<Tasks> tasksData = new ArrayList<Tasks>();
-//        tasksData.add(new Tasks("LinkedList", "Don't lose your reference", "in progress"));
-//        tasksData.add(new Tasks("Stack", " Don't lose your reference ", "assigned"));
-//        tasksData.add(new Tasks("Queue", " Don't lose your reference ", "complete"));
-//        tasksData.add(new Tasks("Tree", " specify the tree root ", "new"));
-//        tasksData.add(new Tasks("Mock", " be prepared for any attack", "HARD"));
+//        List<Tasks> tasksData = TasksDatabase.getInstance(this).taskDao().getAll();
+        List<TasksOrg> tasksData = new ArrayList<>();
 
         RecyclerView allTaskDataRecyclerView = findViewById(R.id.recylerViewId);
 
@@ -57,6 +70,26 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
 
+        Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message msg) {
+                allTaskDataRecyclerView.getAdapter().notifyDataSetChanged();
+                return false;
+            }
+        });
+
+        Amplify.API.query(
+                ModelQuery.list(com.amplifyframework.datastore.generated.model.Tasks.class),
+                response -> {
+                    for (Tasks todo : response.getData()) {
+                        TasksOrg tasksOrg = new TasksOrg(todo.getTitle(), todo.getBody(), todo.getState());
+                        Log.i("graph testing", todo.getTitle());
+                        tasksData.add(tasksOrg);
+                    }
+                    handler.sendEmptyMessage(1);
+                },
+                error -> Log.e("MyAmplifyApp", "Query failure", error)
+        );
 
         Button addTaskButton = findViewById(R.id.addTask);
         addTaskButton.setOnClickListener((view -> {
@@ -136,9 +169,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
-//    public void getTask1(View view) {
+    //    public void getTask1(View view) {
 //        Intent taskDetail = new Intent(this,TaskDetailPage.class);
 //        taskDetail.putExtra("title", "Task1");
 //        startActivity(taskDetail);
@@ -156,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(taskDetail);
 //    }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -164,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
 
         TextView username = findViewById(R.id.textView7);
         username.setText("UserName " + saveButton1);
-
 
 
     }
