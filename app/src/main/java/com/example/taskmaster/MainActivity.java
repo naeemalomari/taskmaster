@@ -86,15 +86,11 @@ public class MainActivity extends AppCompatActivity {
                 },
                 error -> Log.e("MyAmplifyApp", "Query failure", error)
         );
-
-
         Button addTaskButton = findViewById(R.id.addTask);
         addTaskButton.setOnClickListener((view -> {
             Intent intent = new Intent(MainActivity.this, AddTask.class);
             startActivity(intent);
         }));
-
-
         Log.i(TAG, "onCreate: movingToAddTasks");
         Button button1 = findViewById(R.id.button);
         button1.setOnClickListener(new View.OnClickListener() {
