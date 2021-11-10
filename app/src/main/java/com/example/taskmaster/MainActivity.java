@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
             Amplify.configure(getApplicationContext());
-
-            Log.i("MyAmplifyApp", "Initialized Amplify");
+//
+//            Log.i("MyAmplifyApp", "Initialized Amplify");
 //            Team team = Team.builder()
 //                    .name("First team")
 //                    .build();
