@@ -9,6 +9,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,33 +27,20 @@ public class SettingPage extends AppCompatActivity {
         findViewById(R.id.saveButton).setOnClickListener(view -> {
 
 
+            TextView text = findViewById(R.id.editTextTextPersonName);
+            String name = text.getText().toString();
             Toast clickToast = Toast.makeText(getApplicationContext(), "SAVED!!", Toast.LENGTH_LONG);
             clickToast.show();
+            RadioGroup radioGroup=findViewById(R.id.groupRadioButtonFromSettingId);
+            RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
+            String radioString=radioButton.getText().toString();
+
+            editor.putString("username",name);
+            editor.putString("teamName",radioString);
+            editor.apply();
 
             Intent intent2 = new Intent(SettingPage.this, MainActivity.class);
             startActivity(intent2);
-
-
-            TextView text = findViewById(R.id.editTextTextPersonName);
-            String name = text.getText().toString();
-
-            editor.putString("username", name);
-            editor.apply();
-
         });
-//        Button saved = findViewById(R.id.saveButton);
-//        saved.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Toast clickToast = Toast.makeText(getApplicationContext(), "SAVED!!", Toast.LENGTH_LONG);
-//                clickToast.show();
-//                Intent intent2 = new Intent(SettingPage.this, MainActivity.class);
-//                startActivity(intent2);
-//
-//            }
-//
-//        });
-
     }
 }

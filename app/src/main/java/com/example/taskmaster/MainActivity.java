@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
@@ -26,7 +27,8 @@ import com.amplifyframework.datastore.AWSDataStorePlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.amplifyframework.datastore.generated.model.Tasks;
+import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,33 +42,77 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         try {
-            Amplify.addPlugin(new AWSDataStorePlugin()); // stores records locally
+            /////////to add three hard coding to team /////////////////
+
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
             Amplify.configure(getApplicationContext());
-
-            Log.i(TAG, "Initialized Amplify");
+//
+//            Log.i("MyAmplifyApp", "Initialized Amplify");
+//            Team team = Team.builder()
+//                    .name("First team")
+//                    .build();
+//
+//            Amplify.API.mutate(
+//                    ModelMutation.create(team),
+//                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+//                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+//            );
+//
+//            ///second team
+//
+//            Team teamTow = Team.builder()
+//                    .name("Two team")
+//                    .build();
+//
+//            Amplify.API.mutate(
+//                    ModelMutation.create(teamTow),
+//                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+//                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+//            );
+//
+//            ////third team hard coby
+//
+//            Team teamThree = Team.builder()
+//                    .name("Three team")
+//                    .build();
+//
+//            Amplify.API.mutate(
+//                    ModelMutation.create(teamThree),
+//                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+//                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+//            );
         } catch (AmplifyException error) {
-            Log.e(TAG, "Could not initialize Amplify", error);
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
 //        List<Tasks> tasksData = TasksDatabase.getInstance(this).taskDao().getAll();
-        List<TasksOrginal> tasksData = new ArrayList<>();
+        List<Task> tasksData = new ArrayList<>();
+        ArrayList<Task> teams = new ArrayList<>();
 
         RecyclerView allTaskDataRecyclerView = findViewById(R.id.recylerViewId);
 
         allTaskDataRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        allTaskDataRecyclerView.setAdapter(new TaskAdapter(tasksData, new TaskAdapter.OnTaskItemClickListener() {
+        allTaskDataRecyclerView.setAdapter(new TaskAdapter(teams, new TaskAdapter.OnTaskItemClickListener() {
             @Override
             public void onItemClicked(int position) {
                 Intent intentTaskDetails = new Intent(getApplicationContext(), TaskDetailPage.class);
-                intentTaskDetails.putExtra("title", tasksData.get(position).title);
-                intentTaskDetails.putExtra("body", tasksData.get(position).body);
-                intentTaskDetails.putExtra("state", tasksData.get(position).state);
+                intentTaskDetails.putExtra("title", teams.get(position).getTitle());
+                intentTaskDetails.putExtra("body", teams.get(position).getBody());
+                intentTaskDetails.putExtra("state", teams.get(position).getState());
                 startActivity(intentTaskDetails);
 
             }
         }));
+
 
         Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @Override
@@ -75,26 +121,36 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String teamNameString = sharedPreferences.getString("teamName", "team name");
+        TextView teamNameView = findViewById(R.id.teamNameId);
+        teamNameView.setText(teamNameString);
+
         Amplify.API.query(
-                ModelQuery.list(Tasks.class),
+                ModelQuery.list(Task.class),
                 response -> {
-                    for (Tasks todo : response.getData()) {
-                        TasksOrginal taskOrg = new TasksOrginal(todo.getTitle(),todo.getBody(),todo.getState());
-                        tasksData.add(taskOrg);
+                    ///looping through data to render it
+                    for (Task taskMaster2 : response.getData()) {
+                        ///add new data to array
+                        tasksData.add(taskMaster2);
+                        for (int i = 0; i < tasksData.size(); i++) {
+                            if (tasksData.get(i).getTeams().getName().equals(teamNameString)) {
+                                teams.add(tasksData.get(i));
+                            }
+                        }
                     }
+                    //handel promise and wait to get all data
                     handler.sendEmptyMessage(1);
+                    Log.i("MyAmplifyApp", "outsoid the loop");
                 },
                 error -> Log.e("MyAmplifyApp", "Query failure", error)
         );
-
-
         Button addTaskButton = findViewById(R.id.addTask);
         addTaskButton.setOnClickListener((view -> {
             Intent intent = new Intent(MainActivity.this, AddTask.class);
             startActivity(intent);
         }));
-
-
         Log.i(TAG, "onCreate: movingToAddTasks");
         Button button1 = findViewById(R.id.button);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -117,45 +173,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        Log.i(TAG, "onCreate:movingToAllTasks ");
-//        Button button5 =findViewById(R.id.button5);
-//        button5.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view ){
-//                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
-//                String task1 = button5.getText().toString();
-//                intent2.putExtra("title", task1);
-//                startActivity(intent2);
-//            }
-//        });
-//
-//        Log.i(TAG, "onCreate:movingToAllTasks ");
-//        Button button6 =findViewById(R.id.button6);
-//        button6.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view ){
-//                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
-//                String task1 = button6.getText().toString();
-//                intent2.putExtra("title", task1);
-//                startActivity(intent2);
-//            }
-//        });
-//        Log.i(TAG, "onCreate:movingToAllTasks ");
-//
-//
-//
-//        Button button7 =findViewById(R.id.button7);
-//        button7.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view ){
-//                Intent intent2 = new Intent(MainActivity.this,TaskDetailPage.class);
-//                String task1 = button7.getText().toString();
-//                intent2.putExtra("title", task1);
-//                startActivity(intent2);
-//            }
-//
-//        });
-
         Log.i(TAG, "onCreate:movingToAllTasks ");
         Button saving = findViewById(R.id.usernameBtn);
         saving.setOnClickListener(new View.OnClickListener() {
@@ -166,28 +183,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-    //    public void getTask1(View view) {
-//        Intent taskDetail = new Intent(this,TaskDetailPage.class);
-//        taskDetail.putExtra("title", "Task1");
-//        startActivity(taskDetail);
-//    }
-//
-//    public void getTask2(View view) {
-//        Intent taskDetail = new Intent(this,TaskDetailPage.class);
-//        taskDetail.putExtra("title", "Task2");
-//        startActivity(taskDetail);
-//    }
-//
-//    public void getTask3(View view) {
-//        Intent taskDetail = new Intent(this,TaskDetailPage.class);
-//        taskDetail.putExtra("title", "Task3");
-//        startActivity(taskDetail);
-//    }
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -199,4 +195,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }
