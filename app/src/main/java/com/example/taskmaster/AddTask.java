@@ -53,9 +53,9 @@ public class AddTask extends AppCompatActivity {
                         allTeam.add(team);
 
                         System.out.println("here is the data all team " + allTeam);
-                        RadioButtonFirstTeam.setText(team.getName());
-                        RadioButtonSecondTeam.setText(team.getName());
-                        RadioButtonThirdTeam.setText(team.getName());
+//                        RadioButtonFirstTeam.setText(team.getName());
+//                        RadioButtonSecondTeam.setText(team.getName());
+//                        RadioButtonThirdTeam.setText(team.getName());
 
                     }
                     Log.i("MyAmplifyApp", "outside the loop");
