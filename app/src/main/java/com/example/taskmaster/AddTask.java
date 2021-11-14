@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -23,7 +25,7 @@ public class AddTask extends AppCompatActivity {
 
     private RadioButton radioButtonFirstTeam;
     private RadioButton radioButtonFirstTeam1;
-
+    Integer count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +115,21 @@ public class AddTask extends AppCompatActivity {
                 );
 
 
+                TextView task = findViewById(R.id.textView13);
+                count = Integer.parseInt(task.getText().toString());
+
+                Button submitTaskInfo = findViewById(R.id.submitTaskInfo);
+
+                submitTaskInfo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Toast clickToast = Toast.makeText(getApplicationContext(), "SUBMITTED!!", Toast.LENGTH_LONG);
+                        clickToast.show();
+                        count++;
+                        task.setText(String.valueOf(count));
+                    }
+                });
                 Intent goToHomePage = new Intent(AddTask.this, MainActivity.class);
                 startActivity(goToHomePage);
             }

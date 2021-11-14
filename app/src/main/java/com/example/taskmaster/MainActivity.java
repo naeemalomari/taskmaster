@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.amplifyframework.datastore.generated.model.Task;
-import com.amplifyframework.datastore.generated.model.Team;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,6 +84,18 @@ public class MainActivity extends AppCompatActivity {
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
+        Button signOut=findViewById(R.id.logout);
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("AuthQuickstart", error.toString())
+                );
+                Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -152,11 +162,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }));
         Log.i(TAG, "onCreate: movingToAddTasks");
-        Button button1 = findViewById(R.id.button);
+        Button button1 = findViewById(R.id.logout);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(MainActivity.this, MainActivity2.class);
+                Intent intent1 = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(intent1);
             }
         });
@@ -188,13 +198,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String saveButton1 = sharedPreferences.getString("username", "here is your name : ");
+        String saveButton1 = sharedPreferences.getString("userNameAPI", "");
 
         TextView username = findViewById(R.id.textView7);
-        username.setText("UserName " + saveButton1);
-
-
+        username.setText(saveButton1);
     }
-
-
 }
