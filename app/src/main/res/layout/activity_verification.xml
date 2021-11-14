@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="VerificationActivity">
+    tools:context="VerificationActivity"
+    android:background="@color/secondary_text"
+    >
 
     <LinearLayout
         android:id="@+id/linearLayout"
