@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String saveButton1 = sharedPreferences.getString("username", "here is your name : ");
+        String saveButton1 = sharedPreferences.getString("userNameAPI", "");
 
         TextView username = findViewById(R.id.textView7);
         username.setText(saveButton1);

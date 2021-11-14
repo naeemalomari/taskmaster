@@ -37,6 +37,7 @@ public class SignIn extends AppCompatActivity {
 
             preferenceEditor.putString("userNameAPI",username.getText().toString());
             preferenceEditor.apply();
+
         });
 
         createNewAccount.setOnClickListener(view -> {
