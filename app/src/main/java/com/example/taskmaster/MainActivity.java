@@ -48,41 +48,41 @@ public class MainActivity extends AppCompatActivity {
             Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
             Amplify.configure(getApplicationContext());
-//
-//            Log.i("MyAmplifyApp", "Initialized Amplify");
-//            Team team = Team.builder()
-//                    .name("First team")
-//                    .build();
-//
-//            Amplify.API.mutate(
-//                    ModelMutation.create(team),
-//                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-//                    error -> Log.e("MyAmplifyApp", "Create failed", error)
-//            );
-//
-//            ///second team
-//
-//            Team teamTow = Team.builder()
-//                    .name("Two team")
-//                    .build();
-//
-//            Amplify.API.mutate(
-//                    ModelMutation.create(teamTow),
-//                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-//                    error -> Log.e("MyAmplifyApp", "Create failed", error)
-//            );
-//
-//            ////third team hard coby
-//
-//            Team teamThree = Team.builder()
-//                    .name("Three team")
-//                    .build();
-//
-//            Amplify.API.mutate(
-//                    ModelMutation.create(teamThree),
-//                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-//                    error -> Log.e("MyAmplifyApp", "Create failed", error)
-//            );
+
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+            Team team = Team.builder()
+                    .name("First team")
+                    .build();
+
+            Amplify.API.mutate(
+                    ModelMutation.create(team),
+                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+            );
+
+            ///second team
+
+            Team teamTow = Team.builder()
+                    .name("Two team")
+                    .build();
+
+            Amplify.API.mutate(
+                    ModelMutation.create(teamTow),
+                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+            );
+
+            ////third team hard coby
+
+            Team teamThree = Team.builder()
+                    .name("Three team")
+                    .build();
+
+            Amplify.API.mutate(
+                    ModelMutation.create(teamThree),
+                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+            );
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
@@ -192,9 +192,5 @@ public class MainActivity extends AppCompatActivity {
 
         TextView username = findViewById(R.id.textView7);
         username.setText("UserName " + saveButton1);
-
-
     }
-
-
 }
