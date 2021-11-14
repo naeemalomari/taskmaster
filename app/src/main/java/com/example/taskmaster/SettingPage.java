@@ -31,12 +31,12 @@ public class SettingPage extends AppCompatActivity {
             String name = text.getText().toString();
             Toast clickToast = Toast.makeText(getApplicationContext(), "SAVED!!", Toast.LENGTH_LONG);
             clickToast.show();
-            RadioGroup radioGroup=findViewById(R.id.groupRadioButtonFromSettingId);
+            RadioGroup radioGroup = findViewById(R.id.groupRadioButtonFromSettingId);
             RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
-            String radioString=radioButton.getText().toString();
+            String radioString = radioButton.getText().toString();
 
-            editor.putString("username",name);
-            editor.putString("teamName",radioString);
+            editor.putString("username", name);
+            editor.putString("teamName", radioString);
             editor.apply();
 
             Intent intent2 = new Intent(SettingPage.this, MainActivity.class);
