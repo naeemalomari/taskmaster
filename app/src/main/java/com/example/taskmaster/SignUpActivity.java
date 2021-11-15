@@ -74,6 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Intent goToVerification = new Intent(SignUpActivity.this, VerificationActivity.class);
                     goToVerification.putExtra("username", username);
                     goToVerification.putExtra("password", password);
+
                     startActivity(goToVerification);
                 },
                 error -> {
@@ -86,9 +87,9 @@ public class SignUpActivity extends AppCompatActivity {
         // configure Amplify plugins
         try {
             Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.configure(getApplicationContext());
             Log.i(TAG, "Successfully initialized Amplify plugins");
         } catch (AmplifyException exception) {

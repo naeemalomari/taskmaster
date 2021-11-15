@@ -29,6 +29,7 @@ import java.util.List;
 
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AddTask.class);
             startActivity(intent);
         }));
+
+
         Log.i(TAG, "onCreate: movingToAddTasks");
         Button button1 = findViewById(R.id.logout);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 intentTaskDetails.putExtra("title", team.get(position).getTitle());
                 intentTaskDetails.putExtra("body", team.get(position).getBody());
                 intentTaskDetails.putExtra("state", team.get(position).getState());
+                intentTaskDetails.putExtra("img",team.get(position).getImg());
                 startActivity(intentTaskDetails);
 
             }
