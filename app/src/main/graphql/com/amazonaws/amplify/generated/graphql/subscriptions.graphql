@@ -10,11 +10,19 @@ subscription OnCreateTeam {
         title
         body
         state
+        img
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -30,11 +38,19 @@ subscription OnUpdateTeam {
         title
         body
         state
+        img
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -50,11 +66,19 @@ subscription OnDeleteTeam {
         title
         body
         state
+        img
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -66,15 +90,23 @@ subscription OnCreateTask {
     title
     body
     state
+    img
     teams {
       id
       name
       allTask {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -86,15 +118,23 @@ subscription OnUpdateTask {
     title
     body
     state
+    img
     teams {
       id
       name
       allTask {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -106,15 +146,23 @@ subscription OnDeleteTask {
     title
     body
     state
+    img
     teams {
       id
       name
       allTask {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }

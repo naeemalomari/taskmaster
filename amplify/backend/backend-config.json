@@ -43,5 +43,11 @@
         ]
       }
     }
+  },
+  "storage": {
+    "taskmaster2": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

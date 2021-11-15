@@ -44,7 +44,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.title.setText(item.getTitle());
         holder.body.setText(item.getBody());
         holder.state.setText(item.getState());
-
     }
 
     @Override

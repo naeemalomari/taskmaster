@@ -13,11 +13,19 @@ mutation CreateTeam(
         title
         body
         state
+        img
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -36,11 +44,19 @@ mutation UpdateTeam(
         title
         body
         state
+        img
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -59,11 +75,19 @@ mutation DeleteTeam(
         title
         body
         state
+        img
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -78,15 +102,23 @@ mutation CreateTask(
     title
     body
     state
+    img
     teams {
       id
       name
       allTask {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -101,15 +133,23 @@ mutation UpdateTask(
     title
     body
     state
+    img
     teams {
       id
       name
       allTask {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -124,15 +164,23 @@ mutation DeleteTask(
     title
     body
     state
+    img
     teams {
       id
       name
       allTask {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
