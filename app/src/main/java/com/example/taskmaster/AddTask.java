@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ public class AddTask extends AppCompatActivity {
 
     private RadioButton radioButtonFirstTeam;
     private RadioButton radioButtonFirstTeam1;
-    Integer count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +36,11 @@ public class AddTask extends AppCompatActivity {
         EditText taskTitle = findViewById(R.id.titleInput);
         EditText taskBody = findViewById(R.id.bodyInput);
         EditText taskState = findViewById(R.id.stateInput);
-        Button button = findViewById(R.id.submitTaskInfo);
+        Button button2111111 = findViewById(R.id.submitTaskInfo);
 
         List<Team> allTeam = new ArrayList<>();
 
+//        RadioGroup bigRadio =findViewById(R.id.bigRadio);
         RadioButton RadioButtonFirstTeam = findViewById(R.id.radioButton1);
         RadioButton RadioButtonSecondTeam = findViewById(R.id.radioButton2);
         RadioButton RadioButtonThirdTeam = findViewById(R.id.radioButton3);
@@ -66,7 +68,7 @@ public class AddTask extends AppCompatActivity {
         );
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button2111111.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = taskTitle.getText().toString();
@@ -79,21 +81,20 @@ public class AddTask extends AppCompatActivity {
 //                    taskDatabase.taskDao().insertAll(task);
 
 
-                String teamName = "";
+                String teamName ="";
                 if (RadioButtonFirstTeam.isChecked()) {
 //                            teamName = "First team";
-                    teamName = radioButtonFirstTeam.getText().toString();
+                    teamName = RadioButtonFirstTeam.getText().toString();
 
                 } else if (RadioButtonSecondTeam.isChecked()) {
-//                            teamName = "Tow team";
+//                            teamName = "Two team";
                     teamName = RadioButtonSecondTeam.getText().toString();
 
-//
+
                 } else if (RadioButtonThirdTeam.isChecked()) {
 //                            teamName = "Three team";
                     teamName = RadioButtonThirdTeam.getText().toString();
 
-//
                 }
                 Team selectedTeam = null;
                 for (Team teams : allTeam) {
@@ -113,25 +114,9 @@ public class AddTask extends AppCompatActivity {
                         response2 -> Log.i("MyAmplifyApp", "Added Todo with id: " + response2.getData().getId()),
                         error -> Log.e("MyAmplifyApp", "Create failed", error)
                 );
-
-
-                TextView task = findViewById(R.id.textView13);
-                count = Integer.parseInt(task.getText().toString());
-
-                Button submitTaskInfo = findViewById(R.id.submitTaskInfo);
-
-                submitTaskInfo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        Toast clickToast = Toast.makeText(getApplicationContext(), "SUBMITTED!!", Toast.LENGTH_LONG);
-                        clickToast.show();
-                        count++;
-                        task.setText(String.valueOf(count));
-                    }
-                });
                 Intent goToHomePage = new Intent(AddTask.this, MainActivity.class);
                 startActivity(goToHomePage);
+
             }
         });
     }
