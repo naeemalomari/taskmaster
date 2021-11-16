@@ -57,4 +57,5 @@ public class TaskDetailPage extends AppCompatActivity {
             );
         }
     }
+
 }

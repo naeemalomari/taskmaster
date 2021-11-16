@@ -212,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
 //                    ModelMutation.create(teamThree),
 //                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
 //                    error -> Log.e("MyAmplifyApp", "Create failed", error)
-//
 //            );
             // Add these lines to add the AWSApiPlugin plugins
             Amplify.addPlugin(new AWSDataStorePlugin());
