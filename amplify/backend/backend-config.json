@@ -8,8 +8,8 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 45,
-              "description": "hi"
+              "apiKeyExpirationDays": 50,
+              "description": "hi hi "
             }
           },
           "additionalAuthenticationProviders": []
@@ -42,6 +42,12 @@
           "EMAIL"
         ]
       }
+    }
+  },
+  "storage": {
+    "taskmaster2": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

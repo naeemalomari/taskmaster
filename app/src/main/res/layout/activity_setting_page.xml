@@ -63,13 +63,13 @@
             android:id="@+id/radioButtonOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="First Team" />
+            android:text="First team" />
 
         <RadioButton
             android:id="@+id/radioButtonTwo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Second Team"
+            android:text="Two team"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -77,6 +77,6 @@
             android:id="@+id/radioButtonThree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Third Team" />
+            android:text="Three team" />
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

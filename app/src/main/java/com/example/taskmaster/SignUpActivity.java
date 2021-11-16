@@ -20,6 +20,7 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -73,6 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Intent goToVerification = new Intent(SignUpActivity.this, VerificationActivity.class);
                     goToVerification.putExtra("username", username);
                     goToVerification.putExtra("password", password);
+
                     startActivity(goToVerification);
                 },
                 error -> {
@@ -85,6 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
         // configure Amplify plugins
         try {
             Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
