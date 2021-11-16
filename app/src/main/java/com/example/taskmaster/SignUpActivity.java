@@ -35,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         configureAmplify();
+        //38
         createNotificationChannel();
 
         Button signUp = findViewById(R.id.btnlogin);
@@ -85,7 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
                 });
 
     }
-
+//38
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library

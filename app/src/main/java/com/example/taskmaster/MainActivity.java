@@ -57,9 +57,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button signOut=findViewById(R.id.logout);
+        Button signOut = findViewById(R.id.logout);
 
         configure();
+
+        //38
         getPinpointManager(getApplicationContext());
         assignUserIdToEndpoint();
 
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         () -> Log.i("AuthQuickstart", "Signed out successfully"),
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
-                Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
+                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -179,8 +181,8 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
-
-    public static PinpointManager getPinpointManager ( final Context applicationContext){
+//38
+    public static PinpointManager getPinpointManager(final Context applicationContext) {
         if (pinpointManager == null) {
             final AWSConfiguration awsConfig = new AWSConfiguration(applicationContext);
             AWSMobileClient.getInstance().initialize(applicationContext, awsConfig, new Callback<UserStateDetails>() {
@@ -218,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return pinpointManager;
     }
-
+//38
     public void assignUserIdToEndpoint() {
         TargetingClient targetingClient = pinpointManager.getTargetingClient();
         EndpointProfile endpointProfile = targetingClient.currentEndpoint();
@@ -241,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void configure(){
+    private void configure() {
 
         try {
             /////////to add three hard coding to team /////////////////
