@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.amplifyframework.analytics.AnalyticsEvent;
 import com.amplifyframework.core.Amplify;
 
 public class VerificationActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class VerificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
+        recordEvents();
 
         EditText editText = findViewById(R.id.confirmationCode);
         Button verify = findViewById(R.id.verify);
@@ -57,5 +59,17 @@ public class VerificationActivity extends AppCompatActivity {
                     Log.i(TAG, "signIn: worked " + success.toString());
                 },
                 error -> Log.e(TAG, "signIn: failed" + error.toString()));
+    }
+
+    public void recordEvents() {
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name("PasswordReset")
+                .addProperty("Channel", "SMS")
+                .addProperty("Successful", true)
+                .addProperty("ProcessDuration", 792)
+                .addProperty("UserAge", 120.3)
+                .build();
+
+        Amplify.Analytics.recordEvent(event);
     }
 }
