@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amplifyframework.analytics.AnalyticsEvent;
 import com.amplifyframework.core.Amplify;
 
 import java.io.File;
@@ -22,6 +23,9 @@ public class TaskDetailPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail_page);
+        recordEvents();
+
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -37,11 +41,6 @@ public class TaskDetailPage extends AppCompatActivity {
             TextView text3 = findViewById(R.id.state2);
             text3.setText(taskState);
 
-//        Intent intent = getIntent();
-//        ((TextView) findViewById(R.id.textView4)).setText(intent.getExtras().getString("title"));
-//        ((TextView) findViewById(R.id.textView5)).setText(intent.getExtras().getString("body"));
-//        ((TextView) findViewById(R.id.state2)).setText(intent.getExtras().getString("state"));
-
             String img = extras.getString("img");
             Amplify.Storage.downloadFile(
                     "image",
@@ -56,6 +55,18 @@ public class TaskDetailPage extends AppCompatActivity {
                     error -> Log.e("MyAmplifyApp", "Download Failure", error)
             );
         }
+    }
+
+    public void recordEvents() {
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name("PasswordReset")
+                .addProperty("Channel", "SMS")
+                .addProperty("Successful", true)
+                .addProperty("ProcessDuration", 792)
+                .addProperty("UserAge", 120.3)
+                .build();
+
+        Amplify.Analytics.recordEvent(event);
     }
 
 }
