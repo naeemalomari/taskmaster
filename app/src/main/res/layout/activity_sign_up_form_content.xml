@@ -45,11 +45,13 @@
             android:hint="Password"
             android:inputType="textPassword"
             />
+
+
         <Button
             android:id="@+id/btnlogin"
             android:textAllCaps="false"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@drawable/botton_shape"
             android:text="Sign Up"
             android:layout_width="wrap_content"
