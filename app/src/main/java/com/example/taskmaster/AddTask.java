@@ -41,6 +41,7 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         recordEvents();
+        addImage();
 
 //save to db
         EditText taskTitle = findViewById(R.id.titleInput);
@@ -181,4 +182,24 @@ public class AddTask extends AppCompatActivity {
 
         Amplify.Analytics.recordEvent(event);
     }
+
+public void addImage (){
+
+    Intent intent = getIntent();
+    String action = intent.getAction();
+    String type = intent.getType();
+    ImageView sharedImage = findViewById(R.id.shareImage);
+    if (Intent.ACTION_SEND.equals(action) && type != null) {
+        if (type.startsWith("sharedImage/")) {
+            Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+            if (imageUri != null) {
+                sharedImage.setImageURI(imageUri);
+                sharedImage.setVisibility(View.VISIBLE);
+            }
+        }
+    }
 }
+
+
+    }
+
