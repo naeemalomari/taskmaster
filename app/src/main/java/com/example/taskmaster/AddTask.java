@@ -188,13 +188,13 @@ public void addImage (){
     Intent intent = getIntent();
     String action = intent.getAction();
     String type = intent.getType();
-    ImageView image = findViewById(R.id.shareImage);
+    ImageView sharedImage = findViewById(R.id.shareImage);
     if (Intent.ACTION_SEND.equals(action) && type != null) {
-        if (type.startsWith("image/")) {
+        if (type.startsWith("sharedImage/")) {
             Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
             if (imageUri != null) {
-                image.setImageURI(imageUri);
-                image.setVisibility(View.VISIBLE);
+                sharedImage.setImageURI(imageUri);
+                sharedImage.setVisibility(View.VISIBLE);
             }
         }
     }
