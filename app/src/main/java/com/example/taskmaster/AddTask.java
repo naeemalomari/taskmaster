@@ -136,6 +136,13 @@ public class AddTask extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    public void getLocation(View view ){
+        Intent getLoc = new Intent(AddTask.this, Maps.class);
+        startActivity(getLoc);
     }
 
     private void getFileFromDevice() {
@@ -183,7 +190,7 @@ public class AddTask extends AppCompatActivity {
         Amplify.Analytics.recordEvent(event);
     }
 
-public void addImage (){
+public void addImage(){
 
     Intent intent = getIntent();
     String action = intent.getAction();

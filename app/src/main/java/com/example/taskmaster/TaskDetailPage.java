@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,7 +25,6 @@ public class TaskDetailPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail_page);
         recordEvents();
-
 
 
         Bundle extras = getIntent().getExtras();
@@ -68,5 +68,6 @@ public class TaskDetailPage extends AppCompatActivity {
 
         Amplify.Analytics.recordEvent(event);
     }
+
 
 }
