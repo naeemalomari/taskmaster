@@ -123,7 +123,7 @@ public class AddTask extends AppCompatActivity {
                 Task todo = Task.builder()
                         .title(title)
                         .teams(selectedTeam)
-                        .body(body).img(img).state(state).build();
+                        .body(body).img(img).state(state).lat("lat").lon("lon").build();
 
                 Amplify.API.mutate(
                         ModelMutation.create(todo),

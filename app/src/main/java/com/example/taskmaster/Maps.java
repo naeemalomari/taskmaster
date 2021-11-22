@@ -99,8 +99,8 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             String lat=String.valueOf(latitude);
                             String lon=String.valueOf(longitude);
-                            editor.putString("lat",lat);
-                            editor.putString("lon",lon);
+                            editor.putString("32.516271",lat);
+                            editor.putString("35.843845",lon);
                             editor.apply();
                             LatLng latLng = new LatLng(latitude, longitude);
 

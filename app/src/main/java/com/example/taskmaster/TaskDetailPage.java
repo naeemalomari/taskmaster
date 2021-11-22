@@ -1,6 +1,7 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,9 @@ public class TaskDetailPage extends AppCompatActivity {
         recordEvents();
 
 
+        Intent intent = getIntent();
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String taskName = extras.getString("title");
@@ -40,6 +44,9 @@ public class TaskDetailPage extends AppCompatActivity {
             String taskState = extras.getString("state");
             TextView text3 = findViewById(R.id.state2);
             text3.setText(taskState);
+
+
+
 
             String img = extras.getString("img");
             Amplify.Storage.downloadFile(
@@ -55,6 +62,8 @@ public class TaskDetailPage extends AppCompatActivity {
                     error -> Log.e("MyAmplifyApp", "Download Failure", error)
             );
         }
+
+
     }
 
     public void recordEvents() {
