@@ -123,7 +123,7 @@ public class AddTask extends AppCompatActivity {
                 Task todo = Task.builder()
                         .title(title)
                         .teams(selectedTeam)
-                        .body(body).img(img).state(state).build();
+                        .body(body).img(img).state(state).lat("lat").lon("lon").build();
 
                 Amplify.API.mutate(
                         ModelMutation.create(todo),
@@ -136,6 +136,13 @@ public class AddTask extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    public void getLocation(View view ){
+        Intent getLoc = new Intent(AddTask.this, Maps.class);
+        startActivity(getLoc);
     }
 
     private void getFileFromDevice() {
@@ -183,7 +190,7 @@ public class AddTask extends AppCompatActivity {
         Amplify.Analytics.recordEvent(event);
     }
 
-public void addImage (){
+public void addImage(){
 
     Intent intent = getIntent();
     String action = intent.getAction();

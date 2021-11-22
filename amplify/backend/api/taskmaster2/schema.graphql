@@ -12,5 +12,7 @@ type Task @model @auth(rules: [{ allow: public }])
   body: String
   state: String
   img:String
+  lat : String
+  lon : String
   teams: Team! @connection(fields: ["teamId"])
 }

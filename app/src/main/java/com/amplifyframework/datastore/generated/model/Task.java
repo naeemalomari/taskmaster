@@ -32,12 +32,16 @@ public final class Task implements Model {
   public static final QueryField BODY = field("Task", "body");
   public static final QueryField STATE = field("Task", "state");
   public static final QueryField IMG = field("Task", "img");
+  public static final QueryField LAT = field("Task", "lat");
+  public static final QueryField LON = field("Task", "lon");
   public static final QueryField TEAMS = field("Task", "teamId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String") String body;
   private final @ModelField(targetType="String") String state;
   private final @ModelField(targetType="String") String img;
+  private final @ModelField(targetType="String") String lat;
+  private final @ModelField(targetType="String") String lon;
   private final @ModelField(targetType="Team", isRequired = true) @BelongsTo(targetName = "teamId", type = Team.class) Team teams;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -61,6 +65,14 @@ public final class Task implements Model {
       return img;
   }
   
+  public String getLat() {
+      return lat;
+  }
+  
+  public String getLon() {
+      return lon;
+  }
+  
   public Team getTeams() {
       return teams;
   }
@@ -73,12 +85,14 @@ public final class Task implements Model {
       return updatedAt;
   }
   
-  private Task(String id, String title, String body, String state, String img, Team teams) {
+  private Task(String id, String title, String body, String state, String img, String lat, String lon, Team teams) {
     this.id = id;
     this.title = title;
     this.body = body;
     this.state = state;
     this.img = img;
+    this.lat = lat;
+    this.lon = lon;
     this.teams = teams;
   }
   
@@ -95,6 +109,8 @@ public final class Task implements Model {
               ObjectsCompat.equals(getBody(), task.getBody()) &&
               ObjectsCompat.equals(getState(), task.getState()) &&
               ObjectsCompat.equals(getImg(), task.getImg()) &&
+              ObjectsCompat.equals(getLat(), task.getLat()) &&
+              ObjectsCompat.equals(getLon(), task.getLon()) &&
               ObjectsCompat.equals(getTeams(), task.getTeams()) &&
               ObjectsCompat.equals(getCreatedAt(), task.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), task.getUpdatedAt());
@@ -109,6 +125,8 @@ public final class Task implements Model {
       .append(getBody())
       .append(getState())
       .append(getImg())
+      .append(getLat())
+      .append(getLon())
       .append(getTeams())
       .append(getCreatedAt())
       .append(getUpdatedAt())
@@ -125,6 +143,8 @@ public final class Task implements Model {
       .append("body=" + String.valueOf(getBody()) + ", ")
       .append("state=" + String.valueOf(getState()) + ", ")
       .append("img=" + String.valueOf(getImg()) + ", ")
+      .append("lat=" + String.valueOf(getLat()) + ", ")
+      .append("lon=" + String.valueOf(getLon()) + ", ")
       .append("teams=" + String.valueOf(getTeams()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
@@ -151,6 +171,8 @@ public final class Task implements Model {
       null,
       null,
       null,
+      null,
+      null,
       null
     );
   }
@@ -161,6 +183,8 @@ public final class Task implements Model {
       body,
       state,
       img,
+      lat,
+      lon,
       teams);
   }
   public interface TitleStep {
@@ -179,6 +203,8 @@ public final class Task implements Model {
     BuildStep body(String body);
     BuildStep state(String state);
     BuildStep img(String img);
+    BuildStep lat(String lat);
+    BuildStep lon(String lon);
   }
   
 
@@ -189,6 +215,8 @@ public final class Task implements Model {
     private String body;
     private String state;
     private String img;
+    private String lat;
+    private String lon;
     @Override
      public Task build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -199,6 +227,8 @@ public final class Task implements Model {
           body,
           state,
           img,
+          lat,
+          lon,
           teams);
     }
     
@@ -234,6 +264,18 @@ public final class Task implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep lat(String lat) {
+        this.lat = lat;
+        return this;
+    }
+    
+    @Override
+     public BuildStep lon(String lon) {
+        this.lon = lon;
+        return this;
+    }
+    
     /** 
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -246,13 +288,15 @@ public final class Task implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String body, String state, String img, Team teams) {
+    private CopyOfBuilder(String id, String title, String body, String state, String img, String lat, String lon, Team teams) {
       super.id(id);
       super.title(title)
         .teams(teams)
         .body(body)
         .state(state)
-        .img(img);
+        .img(img)
+        .lat(lat)
+        .lon(lon);
     }
     
     @Override
@@ -278,6 +322,16 @@ public final class Task implements Model {
     @Override
      public CopyOfBuilder img(String img) {
       return (CopyOfBuilder) super.img(img);
+    }
+    
+    @Override
+     public CopyOfBuilder lat(String lat) {
+      return (CopyOfBuilder) super.lat(lat);
+    }
+    
+    @Override
+     public CopyOfBuilder lon(String lon) {
+      return (CopyOfBuilder) super.lon(lon);
     }
   }
   

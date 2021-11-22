@@ -131,6 +131,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioButton1"
         app:layout_constraintVertical_bias="0.095" />
 
+
     <Button
         android:id="@+id/uploadImg"
         android:layout_width="wrap_content"
@@ -138,11 +139,10 @@
         android:text="uploadImg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/submitTaskInfo"
-        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioButton3"
-        app:layout_constraintVertical_bias="0.718" />
-
+        app:layout_constraintVertical_bias="0.708" />
 
     <ImageView
         android:id="@+id/shareImage"
@@ -154,5 +154,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.786" />
+
+    <Button
+        android:id="@+id/mapsId"
+        android:layout_width="135dp"
+        android:layout_height="41dp"
+        android:onClick="getLocation"
+        android:text="Location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.564" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

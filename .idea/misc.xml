@@ -10,10 +10,12 @@
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/drawable/ic_arrow_left.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/drawable/ic_baseline_accessible_forward_24.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22552083333333334" />
-        <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_add_task.xml" value="0.25" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_add_task.xml" value="0.22" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_location.xml" value="0.209375" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_main2.xml" value="0.33" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_main3.xml" value="0.25" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_maps.xml" value="0.25" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_setting_page.xml" value="0.4721189591078067" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/taskmaster2/app/src/main/res/layout/activity_sign_in_form_content.xml" value="0.1" />

@@ -1,6 +1,7 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,8 @@ public class TaskDetailPage extends AppCompatActivity {
         recordEvents();
 
 
+        Intent intent = getIntent();
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -41,6 +45,9 @@ public class TaskDetailPage extends AppCompatActivity {
             TextView text3 = findViewById(R.id.state2);
             text3.setText(taskState);
 
+
+
+
             String img = extras.getString("img");
             Amplify.Storage.downloadFile(
                     "image",
@@ -55,6 +62,8 @@ public class TaskDetailPage extends AppCompatActivity {
                     error -> Log.e("MyAmplifyApp", "Download Failure", error)
             );
         }
+
+
     }
 
     public void recordEvents() {
@@ -68,5 +77,6 @@ public class TaskDetailPage extends AppCompatActivity {
 
         Amplify.Analytics.recordEvent(event);
     }
+
 
 }

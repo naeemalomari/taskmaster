@@ -6,6 +6,6 @@
 ## Add Analytics to your amplify project. Create and send an Event whenever you launch intents that start new activities.
 
 
-## ![image description](sharedImage.jpg)
+## ![image description](screen42.PNG)
 
 
