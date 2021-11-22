@@ -53,7 +53,7 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback {
             Log.i(TAG, "The location is => " + mLastLocation);
         }
     };
-له
+
     private double latitude;
     private double longitude;
 
