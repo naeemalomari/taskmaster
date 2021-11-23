@@ -120,6 +120,7 @@ public class AddTask extends AppCompatActivity {
 
                 }
 
+
                 Task todo = Task.builder()
                         .title(title)
                         .teams(selectedTeam)
