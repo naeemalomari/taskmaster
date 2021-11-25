@@ -123,11 +123,11 @@ public class AddTask extends AppCompatActivity {
                         .title(title)
                         .teams(selectedTeam)
                         .body(body).img(img).state(state).lat("lat").lon("lon").build();
-
+// using amlify Api instead of Api mutate solved your problem 
                 Amplify.API.mutate(
                         ModelMutation.create(todo),
-                        response2 -> Log.i("MyAmplifyApp", "Added Todo with id: " + response2.getData().getId()),
-                        error -> Log.e("MyAmplifyApp", "Create failed", error)
+                        response2 -> Log.i("Adding new vlaue", "the id is " + response2.getData().getId()),
+                        error -> Log.e("my App", "Faill", error)
                 );
                 Intent goToHomePage = new Intent(AddTask.this, MainActivity.class);
                 startActivity(goToHomePage);
